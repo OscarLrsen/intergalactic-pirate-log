@@ -23,6 +23,12 @@ function logSpeed(speed) {
   console.log(`Hastigheten är ${speed}`);
 }
 
+function moveToTop(id) {
+  const clicked = ships.find(ship => ship.id === id);
+  const others = ships.filter(ship => ship.id !== id);
+  setSpaceships([clicked, ...others]);
+}
+
 //Funktion för att lägga till ett nytt skepp
 const handleAddShip = (e) => {
   e.preventDefault();
@@ -47,6 +53,7 @@ return (
           key={ships.id}
           name={ships.name}
           speed={ships.speed}
+          onClick={() => moveToTop(ships.id)}
           onLog={() => logSpeed(ships.speed)}
         />
       ))}
